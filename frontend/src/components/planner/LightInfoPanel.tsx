@@ -11,8 +11,8 @@ interface LightInfoPanelProps {
 export default function LightInfoPanel({ date, location, onTimeChange }: LightInfoPanelProps) {
   const times = SunCalc.getTimes(date, location.lat, location.lng);
   
-  const formatTime = (d: Date) => {
-    if (isNaN(d.getTime())) return "--:--";
+  const formatTime = (d: Date | null | undefined) => {
+    if (!d || isNaN(d.getTime())) return "--:--";
     return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
 
